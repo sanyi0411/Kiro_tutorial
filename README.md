@@ -280,6 +280,53 @@ kiro-cli settings chat.defaultModel [MODEL]
 ```
 
 ## Tools
+- `tools` can be interpreted as "capabilities"
+- With `tools` Kiro can interact with it's environment and get things done
+- `tools` include
+    - File operations: read, create, edit, search
+    - Bash: run shell commands
+    - Code intelligence: search symbols, find references, parse, go-to-definition, etc
+    - Grep: run `grep` for search
+    - Glob: run `glob`
+    - AWS CLI: make AWS API calls directly
+    - Subagents: delegate subtasks to run in parallel
+
+### MCP
+- Model-Context-Protocol servers
+- MCP is a kind of tool
+- It extends Kiro's capabilities
+- These locally running servers can connect to
+    - Databases
+    - APIs
+    - Workflows
+
+#### Show currently set up tools and permissions
+```
+/tools
+```
+
+#### Show the input schema for available tools
+```
+/tools schema
+```
+
+#### Set a specified tool permission to trusted or untrusted
+````
+/tools trust <TOOL_NAME>
+````
+````
+/tools untrust <TOOL_NAME>
+````
+
+#### Set all tool's permission to trusted
+```
+/tools trust-all
+```
+
+#### Reset all permission levels to default
+```
+/tools reset
+```
 
 ## Agents
 
