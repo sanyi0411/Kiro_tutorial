@@ -279,6 +279,37 @@ kiro-cli settings chat.defaultModel [MODEL]
 1% >
 ```
 
+## Knowledge base
+- Knowledge base is a persistent, centralized repository of organized information
+- It is a curated set of documents that get fed into the context
+- You can store, search and manage contextual information
+- Knowledge base persists across chat sessions
+- You can limit useage of context by using knowledge base
+- Examples for Knowledge base:
+    - Company wikis
+    - Customer support help centers
+    - Medical/legal reference databases
+    - Vector databases
+- In Kiro `Knowledge Base` is an experimental feature at the moment
+- In Kiro `Knowledge Base`s are stored per agent
+    - One agent cannot access the knowledge base of another agent
+
+#### Enable knowledge base
+- In Kiro you have to first enable the Knowledge Base feature
+```
+kiro-cli settings chat.enableKnowledge true
+```
+
+#### Display all entries in the knowledge base
+```
+/knowledge show
+```
+
+#### Add entry to the knowledge base
+```
+/knowledge add --name <NAME> --path <PATH>
+```
+
 ## Tools
 - `tools` can be interpreted as "capabilities"
 - With `tools` Kiro can interact with it's environment and get things done
