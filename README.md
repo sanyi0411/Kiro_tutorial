@@ -415,6 +415,23 @@ Built-in
 ```
 - This creates `lsp.json` in the workspace level
 
+## Steering
+- Steering gives Kiro persistent knowledge about the workspace, through .md files
+- This ensures Kiro consistently follows established patterns, libraried, standards
+- Instead of explaining the project conventions in every chat, steering files store this information
+- Steering file should be shared among developers for standardization
+- Steering can be 
+    1. `workspace scoped`, stored in `workspace/.kiro/steering`
+    2. Or `global scoped`, stored in `~/.kiro/steering`
+- The global steering can be used to define centralized steering that apply to entire teams
+- Foundational steering files:
+    - `product.md`: defines product's purpose, target users, key features, business objectives
+    - `tech.md`: defines chosen frameworks, libraries, dev tools, technical constraints
+    - `structure.md`: defines file organization, naming conventions, import patterns, architectural decisions
+- You can create your own, specialized guidance, e.g. `api-standards.md`
+    - Use markdown syntax and natural language
+
+
 ## Prompts
 - Prompts are reusable templates
 - There are 3 types of prompts:
