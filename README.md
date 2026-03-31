@@ -291,15 +291,6 @@ kiro-cli settings chat.defaultModel [MODEL]
     - AWS CLI: make AWS API calls directly
     - Subagents: delegate subtasks to run in parallel
 
-### MCP
-- Model-Context-Protocol servers
-- MCP is a kind of tool
-- It extends Kiro's capabilities
-- These locally running servers can connect to
-    - Databases
-    - APIs
-    - Workflows
-
 #### Show currently set up tools and permissions
 ```
 /tools
@@ -346,6 +337,19 @@ Built-in
 /tools reset
 ```
 
+## MCP
+- Model-Context-Protocol servers
+- MCP is an open protocol that standardizes how applications provide context to LLMs
+- MCP is the transport layer, and tools are what get exposed through it
+- MCP servers are somewhat like plugins to Kiro
+- MCP enables communication between Kiro and locally running MCP server
+- MCP servers extend Kiro's capabilities, they provide additional tools and resources
+- When an MCP server is connected, its tools become available to Kiro, just like the native tools
+- These locally running servers can connect to
+    - Databases
+    - APIs
+    - Workflows
+
 ## Agents
 
 ## Code intelligence
@@ -379,6 +383,57 @@ Built-in
 /code init
 ```
 - This creates `lsp.json` in the workspace level
+
+## Prompts
+- Prompts are reusable templates
+- There are 3 types of prompts:
+    1. **Local prompts**: Project specific, stored in `workspace/.kiro/prompts`
+    2. **Global prompt**: User-wide prompts, available across all projects, stored in `~/.kiro/prompts`
+    3. **MCP prompts**: Provided by MCP servers
+- You can create, edit, and organize prompts
+
+#### List available prompts
+```
+/prompts list
+```
+
+#### Get details of a specific prompt
+```
+/prompt details <NAME>
+```
+
+#### Create new local prompt
+- Using the interactive editor
+```
+/prompts create --name <NAME>
+```
+
+- Create prompt in one go, without the interactive editor
+```
+/prompts create --name <NAME> --content <CONTENT>
+```
+
+- Create new prompt in the global scope, intead of local
+```
+/prompts create --global --name <NAME>
+```
+
+#### Edit existing prompt
+```
+/prompts edit <NAME>
+```
+
+#### Use prompt
+- Use the `@` sign to invoke a prompt
+```
+@my-prompt
+```
+
+#### Prompts with the same name
+- If multiple prompts have the same name, the priority decides with one will be used
+    1. Local - highest priority
+    2. Global
+    3. MCP - lowest priority
 
 ## Experimental features
 - Kiro includes experimental features
