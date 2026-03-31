@@ -330,6 +330,15 @@ kiro-cli settings chat.defaultModel [MODEL]
 
 ## Agents
 
+## Experimental features
+- Kiro includes experimental features
+- These provide advanced functionality
+- They can be toggled on or off
+- To open the interactive menu:
+```
+/experiment
+```
+
 ## Quit Kiro CLI
 - If you are in a Kiro CLI chat session, you can exit and get back to your terminal
 ```
