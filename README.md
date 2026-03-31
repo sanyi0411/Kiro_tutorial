@@ -304,6 +304,24 @@ kiro-cli settings chat.defaultModel [MODEL]
 ```
 /tools
 ```
+- Output:
+```
+Tool              ~Tokens    Permission
+▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+Built-in
+- code               1.4k    trust read-only operations
+- shell               150    not trusted
+- read                870    trust working directory
+- write               490    not trusted
+- glob                260    trust working directory
+- grep                610    trust working directory
+- introspect          230    trusted
+- report                -    not trusted
+- session             760    not trusted
+- aws                 420    trust read-only commands
+- subagent            850    not trusted
+  Total              6.0k
+```
 
 #### Show the input schema for available tools
 ```
@@ -329,6 +347,38 @@ kiro-cli settings chat.defaultModel [MODEL]
 ```
 
 ## Agents
+
+## Code intelligence
+1. Kiro has some built-in code intelligence
+    - It works for 18 languages
+    - Can search symbols, lookup definitions etc
+    - No need to install language server
+2. You can integrate Language Server Protocol (LSP) for more precision
+    - Requires language server installation
+    - Enhances precision
+
+#### Get overview of the workspace
+```
+/code overview
+```
+
+#### Get overview of a specific directory
+```
+/code overview <PATH>
+```
+
+#### Generate documentation for the codebase
+```
+/code summary
+```
+- In the opened interactive session you can choose the output format
+
+#### Initialize LSP
+- Run this in the project root
+```
+/code init
+```
+- This creates `lsp.json` in the workspace level
 
 ## Experimental features
 - Kiro includes experimental features
