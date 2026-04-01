@@ -383,6 +383,82 @@ Built-in
 
 ## Agents
 
+- An agent is a configurable persona, that defines how Kiro behaves during the session
+- You can create multiple agents
+- Custom agents provide a way to customize Kiro's behaviour
+- Each agent has its own system prompt, allowed tools, behaviour config
+- Agents are defined by their configuration file
+    - The file specifies which tools the agent can access, permission, contexts
+- There are
+    - Built-in agents: `kiro_default`, `kiro_help`, `kiro_planner`. These cannot be edited
+    - Global agents: stroed in `~/.kiro/agents/`
+    - Workspace agents: stored in `/workspace/.kiro/agents`
+- You can pre-approve or restrict tools for specific agents
+- You can include relevant context, load project files, documentations for different agents
+
+#### List available agents
+```bash
+kiro-cli agent list
+```
+```
+/agent list
+```
+#### Create new agent
+```bash
+kiro-cli agent create <NAME>
+```
+```
+/agent create
+/agent generate
+```
+- This will prompt will you to set a name, description, scope etc
+
+- Create new agent from an existing agent
+```
+/agent create --from kiro_default
+```
+
+- Create new agent is a specified directory
+```bash
+kiro-cli agent create <NAME> --directory <PATH>
+```
+```
+/agent create <NAME> --directory <PATH>
+```
+
+- Create a new agent immediately with description
+```
+/agent create <NAME> --description <TEXT>
+```
+
+- Create a new agent with an MCP server
+```
+/agent create <NAME> --mcp-server <SERVER>
+```
+
+#### Edit an existing agent
+```
+/agent edit <NAME>
+```
+
+#### Switch to another agent
+- To swith between agents use the `swap` command
+    - This opens an interactive editor
+```
+/agent swap
+```
+
+#### Set the default agent
+- The default agent is `kiro-default`
+- You can change the default agent
+```
+/agent set-default <NAME>
+```
+
+
+## Skills
+
+
 ## Code intelligence
 1. Kiro has some built-in code intelligence
     - It works for 18 languages
@@ -430,7 +506,7 @@ Built-in
     - `structure.md`: defines file organization, naming conventions, import patterns, architectural decisions
 - You can create your own, specialized guidance, e.g. `api-standards.md`
     - Use markdown syntax and natural language
-
+- You can steer agents via the `AGENTS.md` file
 
 ## Prompts
 - Prompts are reusable templates
@@ -439,6 +515,7 @@ Built-in
     2. **Global prompt**: User-wide prompts, available across all projects, stored in `~/.kiro/prompts`
     3. **MCP prompts**: Provided by MCP servers
 - You can create, edit, and organize prompts
+- Prompts can take arguments
 
 #### List available prompts
 ```
@@ -475,6 +552,10 @@ Built-in
 - Use the `@` sign to invoke a prompt
 ```
 @my-prompt
+```
+- Or use the slash command
+```
+/prompts get <NAME> [ARGUMENTS]
 ```
 
 #### Prompts with the same name
