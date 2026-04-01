@@ -457,7 +457,32 @@ kiro-cli agent create <NAME> --directory <PATH>
 
 
 ## Skills
+- Skills are a type of agent resourse
+- Skills are portable instruction packages
+    - They extend what Kiro knows how to do
+- Each skill contains instructions for a specific workflow
+    - e.g.: reviewing, deploying, following coding standards
+- Skills use lazy/progressive loading to save context window space
+- Skills are referenced in an agent's resources array using the `skill://` URI scheme
+- Only the skill's metadata is loaded into context at startup
+- The full content is loaded on demand, when actually needed
+- When your request matches a skill's description, Kiro automatically loads the full instructions and follow them
+- Skill files must begin with YAML formatter declaring the name and description
+    - Check the `SKILLS.md` format
+- Based on the description Kiro can decide when the skill is relevant, when to load the full content
 
+> **_IMPORTANT_**:  `file://` resources are always fully loaded into context, while `skill://` resoources only expose their metadata upfront and load content on demand
+
+- See what skills are available in yor current session
+```
+/context show
+```
+- Skills can be
+    - **global**: stored in `~/.kiro/skills/`
+    - **local**: stored in `/workspace/.kiro/skills`
+
+- Default agents load skills from both locations
+- For custom agents you need to explicitly add to the agent's `resources` field
 
 ## Code intelligence
 1. Kiro has some built-in code intelligence
